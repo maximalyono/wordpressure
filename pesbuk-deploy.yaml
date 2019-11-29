@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+ namespace: production
+ name: wordpressure-prod
+ labels: 
+   app: wordpressure-prod
+spec:
+ replicas: 3
+ selector: 
+   matchLabels:
+     app: wordpressure
+ template:
+   metadata:
+     labels:
+       app: wordpressure
+   spec: 
+     containers:
+     - name: wordpressure
+       image: maximalyono/wordpressure-ci:BUILD_NUMBER
+       ports:
+       - containerPort: 80
+

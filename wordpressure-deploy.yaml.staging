@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+ namespace: staging
+ name: wordpressure-stage
+ labels: 
+   app: wordpressure-stage
+spec:
+ replicas: 3
+ selector: 
+   matchLabels:
+     app: wordpressure
+ template:
+   metadata:
+     labels:
+       app: wordpressure
+   spec: 
+     containers:
+     - name: wordpressure
+       image: maximalyono/wordpressure-ci-staging:BUILD_NUMBER
+       ports:
+       - containerPort: 80
+
